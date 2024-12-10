@@ -38,40 +38,7 @@ export default class PatientPage {
    */
 
   async searchAndVerifyPatients(patientData: Record<string, string>): Promise<boolean> {
-    try {
-      // Highlight and click the patient link
-      await CommonMethods.highlightElement(this.patient.patientLink);
-      await this.patient.patientLink.click();
-      await this.page.waitForTimeout(2000);
-
-      const searchBar = this.patient.searchBar;
-      await this.page.waitForTimeout(2000);
-      for (const [key, patientName] of Object.entries(patientData)) {
-        console.log(`Verifying patient: ${patientName}`);
-
-        // Enter patient name in the search bar
-        await CommonMethods.highlightElement(searchBar);
-        await searchBar.fill(patientName);
-        await this.page.keyboard.press("Enter");
-        await this.page.waitForTimeout(3000);
-
-        // Capture and verify the search result
-        const resultText = await this.page
-          .locator("//div[@role='gridcell' and @col-id='ShortName']")
-          .innerText();
-        await this.page.waitForTimeout(3000);
-
-        // Compare the result text with the patient name
-        expect(resultText.trim()).toEqual(patientName.trim());
-
-        // Clear the search bar for the next patient
-        await searchBar.fill("");
-      }
-
-      return true;
-    } catch (error) {
-      console.error("Error searching and verifying patients:", error);
-      return false;
-    }
+    // write your logic here
+    return false;
   }
 }
